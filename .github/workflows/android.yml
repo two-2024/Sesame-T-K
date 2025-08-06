@@ -81,17 +81,17 @@ jobs:
             fi
           done
 
-      - name: 11. 上传 APK 产物 - Compatible
-        uses: actions/upload-artifact@v4
-        with:
-          name: apk-compatible
-          path: ${{ steps.extract_apks.outputs.signed_compatible }}
+      # - name: 11. 上传 APK 产物 - Compatible
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: apk-compatible
+      #     path: ${{ steps.extract_apks.outputs.signed_compatible }}
 
-      - name: 11. 上传 APK 产物 - Normal
-        uses: actions/upload-artifact@v4
-        with:
-          name: apk-normal
-          path: ${{ steps.extract_apks.outputs.signed_normal }}
+      # - name: 11. 上传 APK 产物 - Normal
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: apk-normal
+      #     path: ${{ steps.extract_apks.outputs.signed_normal }}
 
       - name: 12. 提取文件名和版本号
         id: extract_info
