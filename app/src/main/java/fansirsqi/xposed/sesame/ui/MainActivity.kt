@@ -218,14 +218,16 @@ class MainActivity : BaseActivity() {
             // 注意状态判断逻辑修正
             val isEnabled = state != PackageManager.COMPONENT_ENABLED_STATE_DISABLED
             menu.add(0, 1, 1, R.string.hide_the_application_icon).setCheckable(true).isChecked = !isEnabled
-            menu.add(0, 2, 2, R.string.view_error_log_file)
-            menu.add(0, 3, 3, R.string.view_all_log_file)
-            menu.add(0, 4, 4, R.string.view_runtim_log_file)
-            menu.add(0, 5, 5, R.string.view_capture)
-            menu.add(0, 6, 6, R.string.extend)
-            menu.add(0, 7, 7, R.string.settings)
+            menu.add(0, 2, 2, R.string.friend_watch)
+            menu.add(0, 3, 3, R.string.other_log)
+            menu.add(0, 4, 4, R.string.view_error_log_file)
+            menu.add(0, 5, 5, R.string.view_all_log_file)
+            menu.add(0, 6, 6, R.string.view_runtim_log_file)
+            menu.add(0, 7, 7, R.string.view_capture)
+            menu.add(0, 8, 8, R.string.extend)
+            menu.add(0, 9, 9, R.string.settings)
             if (BuildConfig.DEBUG) {
-                menu.add(0, 8, 8, "清除配置")
+                menu.add(0, 10, 10, "清除配置")
             }
         } catch (e: Exception) {
             Log.printStackTrace(e)
