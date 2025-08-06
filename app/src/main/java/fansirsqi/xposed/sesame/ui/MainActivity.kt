@@ -380,6 +380,22 @@ class MainActivity : BaseActivity() {
         }
     }
 
+    private fun goFriendWatch(index: Int) {
+        val userEntity = userEntityArray[index]
+        if (userEntity != null) {
+            ListDialog.show(
+                this,
+                getString(R.string.friend_watch),
+                FriendWatch.getList(userEntity.userId),
+                SelectModelFieldFunc.newMapInstance(),
+                false,
+                ListDialog.ListType.SHOW
+            )
+        } else {
+            ToastUtil.makeText(this, "😡 别他妈选默认！！！！！！！！", Toast.LENGTH_LONG).show()
+        }
+    }
+
     private fun goSettingActivity(index: Int) {
         if (Detector.loadLibrary("checker")) {
             val userEntity = userEntityArray[index]
