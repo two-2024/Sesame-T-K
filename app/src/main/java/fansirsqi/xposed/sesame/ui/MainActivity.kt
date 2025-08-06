@@ -177,8 +177,12 @@ class MainActivity : BaseActivity() {
                 data += Files.getFarmLogFile().absolutePath
             }
 
-            R.id.btn_other_log -> {
-                data += Files.getOtherLogFile().absolutePath
+            R.id.btn_view_error_log_file -> {
+                data += Files.getErrorLogFile().absolutePath
+            }
+
+            R.id.btn_view_all_log_file -> {
+                data += Files.getRecordLogFile().absolutePath
             }
 
             R.id.btn_github -> {
@@ -189,11 +193,6 @@ class MainActivity : BaseActivity() {
                 showSelectionDialog(
                     "📌 请选择配置", userNameArray, { index: Int -> this.goSettingActivity(index) }, "😡 老子就不选", {}, true
                 )
-                return
-            }
-
-            R.id.btn_friend_watch -> {
-                ToastUtil.makeText(this, "🏗 功能施工中...", Toast.LENGTH_SHORT).show()
                 return
             }
 
