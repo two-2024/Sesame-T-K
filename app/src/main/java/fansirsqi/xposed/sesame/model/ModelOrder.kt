@@ -17,7 +17,7 @@ import fansirsqi.xposed.sesame.task.antStall.AntStall
 import fansirsqi.xposed.sesame.task.greenFinance.GreenFinance
 
 object ModelOrder {
-    private val array = arrayOf(
+    private val array: Array<Class<out Model>> = arrayOf(
         BaseModel::class.java,       // 基础设置
         AntForest::class.java,       // 森林
         AntFarm::class.java,         // 庄园
