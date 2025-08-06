@@ -1,7 +1,7 @@
 package fansirsqi.xposed.sesame.model
 
-import fansirsqi.xposed.sesame.model.base.BaseModel
-import fansirsqi.xposed.sesame.model.base.Model
+import fansirsqi.xposed.sesame.model.BaseModel
+import fansirsqi.xposed.sesame.model.Model
 import fansirsqi.xposed.sesame.task.AnswerAI.AnswerAI
 import fansirsqi.xposed.sesame.task.ancientTree.AncientTree
 import fansirsqi.xposed.sesame.task.antCooperate.AntCooperate
