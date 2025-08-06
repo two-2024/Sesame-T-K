@@ -42,6 +42,10 @@ import fansirsqi.xposed.sesame.util.Log
 import fansirsqi.xposed.sesame.util.PermissionUtil
 import fansirsqi.xposed.sesame.util.ToastUtil
 import fansirsqi.xposed.sesame.util.maps.UserMap
+//好友统计（旧）
+import fansirsqi.xposed.sesame.ui.widget.ListDialog
+import fansirsqi.xposed.sesame.entity.FriendWatch
+import fansirsqi.xposed.sesame.model.SelectModelFieldFunc
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
