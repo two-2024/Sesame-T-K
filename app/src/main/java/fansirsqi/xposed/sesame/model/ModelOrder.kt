@@ -1,5 +1,7 @@
 package fansirsqi.xposed.sesame.model
 
+import fansirsqi.xposed.sesame.model.base.BaseModel
+import fansirsqi.xposed.sesame.model.base.Model
 import fansirsqi.xposed.sesame.task.AnswerAI.AnswerAI
 import fansirsqi.xposed.sesame.task.ancientTree.AncientTree
 import fansirsqi.xposed.sesame.task.antCooperate.AntCooperate
@@ -9,6 +11,10 @@ import fansirsqi.xposed.sesame.task.antForest.AntForest
 import fansirsqi.xposed.sesame.task.antOcean.AntOcean
 import fansirsqi.xposed.sesame.task.antSports.AntSports
 import fansirsqi.xposed.sesame.task.reserve.Reserve
+import fansirsqi.xposed.sesame.task.antOrchard.AntOrchard
+import fansirsqi.xposed.sesame.task.antMember.AntMember
+import fansirsqi.xposed.sesame.task.antStall.AntStall
+import fansirsqi.xposed.sesame.task.greenFinance.GreenFinance
 
 object ModelOrder {
     private val array = arrayOf(
