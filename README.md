@@ -1,4 +1,4 @@
-![Sesame-TK](https://socialify.git.ci/ALLG999/Sesame-TK/image?custom_language=OpenAI&description=1&font=Inter&forks=1&issues=1&language=1&logo=https%3A%2F%2Fraw.githubusercontent.com%2FALLG999%2FSesame-TK%2Frefs%2Fheads%2Fmain%2Fapp%2Fsrc%2Fmain%2Fres%2Fdrawable%2Fic_launcher.png&name=1&owner=1&pattern=Circuit+Board&pulls=1&stargazers=1&theme=Auto)
+![Sesame-TK](https://socialify.git.ci/two-2024/Sesame-T-K/image?custom_description=%E8%8A%9D%E9%BA%BB%E7%B2%92-T-K&description=1&language=1&name=1&pattern=Plus&theme=Auto)
 [![wtfpl](http://www.wtfpl.net/wp-content/uploads/2012/12/wtfpl-badge-4.png)](http://www.wtfpl.net/)<br>
 [![Latest Release](https://img.shields.io/github/release/ALLG999/Sesame-TK?labelColor=fff&label=Releases&logo=gitlfs)](../../releases)  
 [![All Releases Download](https://img.shields.io/github/downloads/ALLG999/Sesame-TK/total?labelColor=fff&label=Downloads&logo=codefresh)](../../releases)  
