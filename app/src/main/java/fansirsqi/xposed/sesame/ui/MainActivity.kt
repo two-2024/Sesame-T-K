@@ -401,21 +401,56 @@ override fun onOptionsItemSelected(item: MenuItem): Boolean {
         }
     }
 
-    private fun goFriendWatch(index: Int) {
-        val userEntity = userEntityArray[index]
-        if (userEntity != null) {
-            ListDialog.show(
-                this,
-                getString(R.string.friend_watch),
-                FriendWatch.getList(userEntity.userId),
-                SelectModelFieldFunc.newMapInstance(),
-                false,
-                ListDialog.ListType.SHOW
-            )
-        } else {
-            ToastUtil.makeText(this, "😡 别他妈选默认！！！！！！！！", Toast.LENGTH_LONG).show()
+    private fun selectFriendWatchUid() {
+    val latch = CountDownLatch(1)
+    val dialog = StringDialog.showSelectionDialog(
+        this,
+        "📌 请选择用户",
+        userNameArray,
+        { dialogInterface, which ->
+            dialogInterface.dismiss()
+            latch.countDown()
+            goFriendWatch(which)
+        },
+        "取消",
+        {
+            latch.countDown()
         }
+    )
+
+    val length = userNameArray.size
+    if (length in 1..2) {
+        val timeoutMillis = 800L
+        Thread {
+            try {
+                if (!latch.await(timeoutMillis, TimeUnit.MILLISECONDS)) {
+                    runOnUiThread {
+                        if (dialog.isShowing) {
+                            goFriendWatch(length - 1)
+                            dialog.dismiss()
+                        }
+                    }
+                }
+            } catch (e: InterruptedException) {
+                Thread.currentThread().interrupt()
+            }
+        }.start()
     }
+}
+
+private fun goFriendWatch(index: Int) {
+    userEntityArray.getOrNull(index)?.let { userEntity ->
+        ListDialog.show(
+            this,
+            getString(R.string.friend_watch),
+            FriendWatch.getList(userEntity.userId),
+            SelectModelFieldFunc.newMapInstance(),
+            false,
+            ListDialog.ListType.SHOW
+        )
+    } ?: ToastUtil.makeText(this, "😡 请选择具体用户，不能选默认！", Toast.LENGTH_LONG).show()
+}
+
 
     private fun goSettingActivity(index: Int) {
         if (Detector.loadLibrary("checker")) {
