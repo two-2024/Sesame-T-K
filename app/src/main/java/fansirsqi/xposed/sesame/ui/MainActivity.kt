@@ -241,82 +241,99 @@ class MainActivity : BaseActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            1 -> {
-                val shouldHide = !item.isChecked
-                item.isChecked = shouldHide
+override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    when (item.itemId) {
+        1 -> {
+            val shouldHide = !item.isChecked
+            item.isChecked = shouldHide
 
-                val aliasComponent = ComponentName(this, General.MODULE_PACKAGE_UI_ICON)
-                val newState = if (shouldHide) {
-                    PackageManager.COMPONENT_ENABLED_STATE_DISABLED
-                } else {
-                    PackageManager.COMPONENT_ENABLED_STATE_ENABLED
-                }
-
-                packageManager.setComponentEnabledSetting(
-                    aliasComponent, newState, PackageManager.DONT_KILL_APP
-                )
-
-                // 提示用户需要重启启动器才能看到效果
-                Toast.makeText(this, "设置已保存，可能需要重启桌面才能生效", Toast.LENGTH_SHORT).show()
-                return true
+            val aliasComponent = ComponentName(this, General.MODULE_PACKAGE_UI_ICON)
+            val newState = if (shouldHide) {
+                PackageManager.COMPONENT_ENABLED_STATE_DISABLED
+            } else {
+                PackageManager.COMPONENT_ENABLED_STATE_ENABLED
             }
 
-            2 -> {
-                var errorData = "file://"
-                errorData += Files.getErrorLogFile().absolutePath
-                val errorIt = Intent(this, HtmlViewerActivity::class.java)
-                errorIt.putExtra("nextLine", false)
-                errorIt.putExtra("canClear", true)
-                errorIt.data = errorData.toUri()
-                startActivity(errorIt)
-            }
+            packageManager.setComponentEnabledSetting(
+                aliasComponent, newState, PackageManager.DONT_KILL_APP
+            )
 
-            3 -> {
-                var recordData = "file://"
-                recordData += Files.getRecordLogFile().absolutePath
-                val otherIt = Intent(this, HtmlViewerActivity::class.java)
-                otherIt.putExtra("nextLine", false)
-                otherIt.putExtra("canClear", true)
-                otherIt.data = recordData.toUri()
-                startActivity(otherIt)
-            }
-
-            4 -> {
-                var runtimeData = "file://"
-                runtimeData += Files.getRuntimeLogFile().absolutePath
-                val allIt = Intent(this, HtmlViewerActivity::class.java)
-                allIt.putExtra("nextLine", false)
-                allIt.putExtra("canClear", true)
-                allIt.data = runtimeData.toUri()
-                startActivity(allIt)
-            }
-
-            5 -> {
-                var captureData = "file://"
-                captureData += Files.getCaptureLogFile().absolutePath
-                val captureIt = Intent(this, HtmlViewerActivity::class.java)
-                captureIt.putExtra("nextLine", false)
-                captureIt.putExtra("canClear", true)
-                captureIt.data = captureData.toUri()
-                startActivity(captureIt)
-            }
-
-            6 ->                 // 扩展功能
-                startActivity(Intent(this, ExtendActivity::class.java))
-
-            7 -> selectSettingUid()
-            8 -> AlertDialog.Builder(this).setTitle("⚠️ 警告").setMessage("🤔 确认清除所有模块配置？").setPositiveButton(R.string.ok) { _: DialogInterface?, _: Int ->
-                if (Files.delFile(Files.CONFIG_DIR)) {
-                    Toast.makeText(this, "🙂 清空配置成功", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(this, "😭 清空配置失败", Toast.LENGTH_SHORT).show()
-                }
-            }.setNegativeButton(R.string.cancel) { dialog: DialogInterface, _: Int -> dialog.dismiss() }.create().show()
+            Toast.makeText(this, "设置已保存，可能需要重启桌面才能生效", Toast.LENGTH_SHORT).show()
+            return true
         }
-        return super.onOptionsItemSelected(item)
+
+        2 -> {
+            // 好友列表
+            selectFriendWatchUid()
+        }
+
+        3 -> {
+            var recordData = "file://"
+            recordData += Files.getRecordLogFile().absolutePath
+            val otherIt = Intent(this, HtmlViewerActivity::class.java)
+            otherIt.putExtra("nextLine", false)
+            otherIt.putExtra("canClear", true)
+            otherIt.data = recordData.toUri()
+            startActivity(otherIt)
+        }
+
+        4 -> {
+            var errorData = "file://"
+            errorData += Files.getErrorLogFile().absolutePath
+            val errorIt = Intent(this, HtmlViewerActivity::class.java)
+            errorIt.putExtra("nextLine", false)
+            errorIt.putExtra("canClear", true)
+            errorIt.data = errorData.toUri()
+            startActivity(errorIt)
+        }
+
+        5 -> {
+            var allData = "file://"
+            allData += Files.getForestLogFile().absolutePath
+            val allIt = Intent(this, HtmlViewerActivity::class.java)
+            allIt.putExtra("nextLine", false)
+            allIt.putExtra("canClear", true)
+            allIt.data = allData.toUri()
+            startActivity(allIt)
+        }
+
+        6 -> {
+            var runtimeData = "file://"
+            runtimeData += Files.getRuntimeLogFile().absolutePath
+            val runtimeIt = Intent(this, HtmlViewerActivity::class.java)
+            runtimeIt.putExtra("nextLine", false)
+            runtimeIt.putExtra("canClear", true)
+            runtimeIt.data = runtimeData.toUri()
+            startActivity(runtimeIt)
+        }
+
+        7 -> {
+            var captureData = "file://"
+            captureData += Files.getCaptureLogFile().absolutePath
+            val captureIt = Intent(this, HtmlViewerActivity::class.java)
+            captureIt.putExtra("nextLine", false)
+            captureIt.putExtra("canClear", true)
+            captureIt.data = captureData.toUri()
+            startActivity(captureIt)
+        }
+
+        8 -> {
+            // 扩展功能
+            startActivity(Intent(this, ExtendActivity::class.java))
+        }
+
+        9 -> selectSettingUid()
+
+        10 -> AlertDialog.Builder(this).setTitle("⚠️ 警告").setMessage("🤔 确认清除所有模块配置？").setPositiveButton(R.string.ok) { _, _ ->
+            if (Files.delFile(Files.CONFIG_DIR)) {
+                Toast.makeText(this, "🙂 清空配置成功", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "😭 清空配置失败", Toast.LENGTH_SHORT).show()
+            }
+        }.setNegativeButton(R.string.cancel) { dialog, _ -> dialog.dismiss() }.create().show()
     }
+    return super.onOptionsItemSelected(item)
+}
 
     private fun selectSettingUid() {
         val latch = CountDownLatch(1)
